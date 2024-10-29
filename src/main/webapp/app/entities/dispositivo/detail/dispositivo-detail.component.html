@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dispositivo">
+      <h2 data-cy="dispositivoDetailsHeading"><span jhiTranslate="tiendaApp.dispositivo.detail.title">Dispositivo</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dispositivo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiendaApp.dispositivo.codigo">Codigo</span></dt>
+        <dd>
+          <span>{{ dispositivo.codigo }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiendaApp.dispositivo.nombre">Nombre</span></dt>
+        <dd>
+          <span>{{ dispositivo.nombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiendaApp.dispositivo.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ dispositivo.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiendaApp.dispositivo.precioBase">Precio Base</span></dt>
+        <dd>
+          <span>{{ dispositivo.precioBase }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiendaApp.dispositivo.moneda">Moneda</span></dt>
+        <dd>
+          <span>{{ dispositivo.moneda }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiendaApp.dispositivo.adicionales">Adicionales</span></dt>
+        <dd>
+          <span *ngFor="let adicionales of dispositivo.adicionales; let last = last">
+            <a [routerLink]="['/adicional', adicionales.id, 'view']">{{ adicionales.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="tiendaApp.dispositivo.venta">Venta</span></dt>
+        <dd>
+          <div *ngIf="dispositivo.venta">
+            <a [routerLink]="['/venta', dispositivo.venta.id, 'view']">{{ dispositivo.venta.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dispositivo', dispositivo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

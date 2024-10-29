@@ -1,0 +1,34 @@
+{
+  "applications": ["tienda"],
+  "changelogDate": "20241029202346",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "venta",
+  "fields": [
+    {
+      "fieldName": "fechaVenta",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "precioFinal",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Venta",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "dispositivo",
+      "otherEntityRelationshipName": "venta",
+      "relationshipName": "dispositivo",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": false,
+  "service": "serviceClass"
+}
