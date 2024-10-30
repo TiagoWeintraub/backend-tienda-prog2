@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="adicional">
-      <h2 data-cy="adicionalDetailsHeading"><span jhiTranslate="tiendaApp.adicional.detail.title">Adicional</span></h2>
+      <h2 data-cy="adicionalDetailsHeading"><span jhiTranslate="tiendaApiApp.adicional.detail.title">Adicional</span></h2>
 
       <hr />
 
@@ -14,21 +14,27 @@
         <dd>
           <span>{{ adicional.id }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.adicional.nombre">Nombre</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.adicional.nombre">Nombre</span></dt>
         <dd>
           <span>{{ adicional.nombre }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.adicional.descripcion">Descripcion</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.adicional.descripcion">Descripcion</span></dt>
         <dd>
           <span>{{ adicional.descripcion }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.adicional.precio">Precio</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.adicional.precio">Precio</span></dt>
         <dd>
           <span>{{ adicional.precio }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.adicional.precioGratis">Precio Gratis</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.adicional.precioGratis">Precio Gratis</span></dt>
         <dd>
           <span>{{ adicional.precioGratis }}</span>
+        </dd>
+        <dt><span jhiTranslate="tiendaApiApp.adicional.dispositivo">Dispositivo</span></dt>
+        <dd>
+          <div *ngIf="adicional.dispositivo">
+            <a [routerLink]="['/dispositivo', adicional.dispositivo.id, 'view']">{{ adicional.dispositivo.id }}</a>
+          </div>
         </dd>
       </dl>
 

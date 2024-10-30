@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import ar.edu.um.programacion2.IntegrationTest;
+import ar.edu.um.programacion2.domain.Dispositivo;
 import ar.edu.um.programacion2.domain.Personalizacion;
 import ar.edu.um.programacion2.repository.PersonalizacionRepository;
 import ar.edu.um.programacion2.service.dto.PersonalizacionDTO;
@@ -65,6 +66,16 @@ class PersonalizacionResourceIT {
      */
     public static Personalizacion createEntity(EntityManager em) {
         Personalizacion personalizacion = new Personalizacion().nombre(DEFAULT_NOMBRE).descripcion(DEFAULT_DESCRIPCION);
+        // Add required entity
+        Dispositivo dispositivo;
+        if (TestUtil.findAll(em, Dispositivo.class).isEmpty()) {
+            dispositivo = DispositivoResourceIT.createEntity(em);
+            em.persist(dispositivo);
+            em.flush();
+        } else {
+            dispositivo = TestUtil.findAll(em, Dispositivo.class).get(0);
+        }
+        personalizacion.setDispositivo(dispositivo);
         return personalizacion;
     }
 
@@ -76,6 +87,16 @@ class PersonalizacionResourceIT {
      */
     public static Personalizacion createUpdatedEntity(EntityManager em) {
         Personalizacion personalizacion = new Personalizacion().nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION);
+        // Add required entity
+        Dispositivo dispositivo;
+        if (TestUtil.findAll(em, Dispositivo.class).isEmpty()) {
+            dispositivo = DispositivoResourceIT.createUpdatedEntity(em);
+            em.persist(dispositivo);
+            em.flush();
+        } else {
+            dispositivo = TestUtil.findAll(em, Dispositivo.class).get(0);
+        }
+        personalizacion.setDispositivo(dispositivo);
         return personalizacion;
     }
 

@@ -33,7 +33,7 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/tienda?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/tiendaApi?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
     password:
     hikari:
@@ -58,7 +58,7 @@ spring:
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:
-# keytool -genkey -alias tienda -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+# keytool -genkey -alias tiendaapi -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 #
 # You can also use Let's Encrypt:
 # See details in topic "Create a Java Keystore (.JKS) from Let's Encrypt Certificates" on https://maximilian-boehm.com/en-gb/blog
@@ -105,7 +105,7 @@ jhipster:
         # - In the JHipster Registry (which includes a Spring Cloud Config server)
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: ZTRhZTJjNWY2MTE1MjdjNjMwNjI5MzNiNWJmNTVmMTEwOWE4YzQ5ODgxNDIwMTMzZjQzY2ZmYWRmY2FlNTQzZDRjNzZjNTJmZWIyOTg0OTk0ZTQwODdkMmJkNTNlNDczZGZiODFmMWQxOTQ1NTI2OTNiZDM5MGYyNTI1ZGRkMmM=
+        base64-secret: Zjk2M2U3MWNlMzFiYjQ2MDRkNzBjMjAyOThhMjg5MjgzZDIxOGFkYzBiOTUxOTEwZTQwZDc2Njc1YjgwYWZlYzhlODUxZDY4ZDRjYmE0ODQxZDAzOWEwYjk0ZWJlYzlmNTdkOWQzY2I5NDc4MWNlMDhhOGQ4YzczZDU5YjkwNDc=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

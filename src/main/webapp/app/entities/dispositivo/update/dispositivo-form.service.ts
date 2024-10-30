@@ -14,7 +14,7 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type DispositivoFormGroupInput = IDispositivo | PartialWithRequiredKeyOf<NewDispositivo>;
 
-type DispositivoFormDefaults = Pick<NewDispositivo, 'id' | 'adicionales'>;
+type DispositivoFormDefaults = Pick<NewDispositivo, 'id'>;
 
 type DispositivoFormGroupContent = {
   id: FormControl<IDispositivo['id'] | NewDispositivo['id']>;
@@ -23,8 +23,6 @@ type DispositivoFormGroupContent = {
   descripcion: FormControl<IDispositivo['descripcion']>;
   precioBase: FormControl<IDispositivo['precioBase']>;
   moneda: FormControl<IDispositivo['moneda']>;
-  adicionales: FormControl<IDispositivo['adicionales']>;
-  venta: FormControl<IDispositivo['venta']>;
 };
 
 export type DispositivoFormGroup = FormGroup<DispositivoFormGroupContent>;
@@ -54,13 +52,11 @@ export class DispositivoFormService {
         validators: [Validators.required],
       }),
       precioBase: new FormControl(dispositivoRawValue.precioBase, {
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.min(0)],
       }),
       moneda: new FormControl(dispositivoRawValue.moneda, {
         validators: [Validators.required],
       }),
-      adicionales: new FormControl(dispositivoRawValue.adicionales ?? []),
-      venta: new FormControl(dispositivoRawValue.venta),
     });
   }
 
@@ -81,7 +77,6 @@ export class DispositivoFormService {
   private getFormDefaults(): DispositivoFormDefaults {
     return {
       id: null,
-      adicionales: [],
     };
   }
 }

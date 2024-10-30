@@ -20,9 +20,14 @@ public class AdicionalDTO implements Serializable {
     private String descripcion;
 
     @NotNull
+    @DecimalMin(value = "0")
     private BigDecimal precio;
 
+    @NotNull
+    @DecimalMin(value = "-1")
     private BigDecimal precioGratis;
+
+    private DispositivoDTO dispositivo;
 
     public Long getId() {
         return id;
@@ -64,6 +69,14 @@ public class AdicionalDTO implements Serializable {
         this.precioGratis = precioGratis;
     }
 
+    public DispositivoDTO getDispositivo() {
+        return dispositivo;
+    }
+
+    public void setDispositivo(DispositivoDTO dispositivo) {
+        this.dispositivo = dispositivo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -94,6 +107,7 @@ public class AdicionalDTO implements Serializable {
             ", descripcion='" + getDescripcion() + "'" +
             ", precio=" + getPrecio() +
             ", precioGratis=" + getPrecioGratis() +
+            ", dispositivo=" + getDispositivo() +
             "}";
     }
 }

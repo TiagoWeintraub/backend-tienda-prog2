@@ -52,9 +52,11 @@ export class OpcionFormService {
         validators: [Validators.required],
       }),
       precioAdicional: new FormControl(opcionRawValue.precioAdicional, {
+        validators: [Validators.required, Validators.min(0)],
+      }),
+      personalizacion: new FormControl(opcionRawValue.personalizacion, {
         validators: [Validators.required],
       }),
-      personalizacion: new FormControl(opcionRawValue.personalizacion),
     });
   }
 

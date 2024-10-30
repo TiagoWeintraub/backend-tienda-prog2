@@ -1,6 +1,6 @@
 {
-  "applications": ["tienda"],
-  "changelogDate": "20241029202046",
+  "applications": ["tiendaApi"],
+  "changelogDate": "20241030151537",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "dispositivo",
@@ -17,14 +17,14 @@
     },
     {
       "fieldName": "descripcion",
-      "fieldType": "byte[]",
-      "fieldTypeBlobContent": "text",
+      "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "precioBase",
       "fieldType": "BigDecimal",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
     },
     {
       "fieldName": "moneda",
@@ -37,33 +37,6 @@
   "name": "Dispositivo",
   "pagination": "infinite-scroll",
   "readOnly": false,
-  "relationships": [
-    {
-      "otherEntityName": "caracteristica",
-      "otherEntityRelationshipName": "dispositivo",
-      "relationshipName": "caracteristicas",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "personalizacion",
-      "otherEntityRelationshipName": "dispositivo",
-      "relationshipName": "personalizaciones",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "adicional",
-      "otherEntityRelationshipName": "dispositivos",
-      "ownerSide": true,
-      "relationshipName": "adicionales",
-      "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityName": "venta",
-      "otherEntityRelationshipName": "dispositivo",
-      "relationshipName": "venta",
-      "relationshipType": "many-to-one"
-    }
-  ],
-  "searchEngine": false,
+  "relationships": [],
   "service": "serviceClass"
 }

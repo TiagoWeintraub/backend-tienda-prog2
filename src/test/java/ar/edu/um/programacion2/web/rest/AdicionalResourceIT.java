@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import ar.edu.um.programacion2.IntegrationTest;
 import ar.edu.um.programacion2.domain.Adicional;
+import ar.edu.um.programacion2.domain.Dispositivo;
 import ar.edu.um.programacion2.repository.AdicionalRepository;
 import ar.edu.um.programacion2.service.dto.AdicionalDTO;
 import ar.edu.um.programacion2.service.mapper.AdicionalMapper;
@@ -39,11 +40,11 @@ class AdicionalResourceIT {
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
-    private static final BigDecimal DEFAULT_PRECIO = new BigDecimal(1);
-    private static final BigDecimal UPDATED_PRECIO = new BigDecimal(2);
+    private static final BigDecimal DEFAULT_PRECIO = new BigDecimal(0);
+    private static final BigDecimal UPDATED_PRECIO = new BigDecimal(1);
 
-    private static final BigDecimal DEFAULT_PRECIO_GRATIS = new BigDecimal(1);
-    private static final BigDecimal UPDATED_PRECIO_GRATIS = new BigDecimal(2);
+    private static final BigDecimal DEFAULT_PRECIO_GRATIS = new BigDecimal(-1);
+    private static final BigDecimal UPDATED_PRECIO_GRATIS = new BigDecimal(0);
 
     private static final String ENTITY_API_URL = "/api/adicionals";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -77,6 +78,16 @@ class AdicionalResourceIT {
             .descripcion(DEFAULT_DESCRIPCION)
             .precio(DEFAULT_PRECIO)
             .precioGratis(DEFAULT_PRECIO_GRATIS);
+        // Add required entity
+        Dispositivo dispositivo;
+        if (TestUtil.findAll(em, Dispositivo.class).isEmpty()) {
+            dispositivo = DispositivoResourceIT.createEntity(em);
+            em.persist(dispositivo);
+            em.flush();
+        } else {
+            dispositivo = TestUtil.findAll(em, Dispositivo.class).get(0);
+        }
+        adicional.setDispositivo(dispositivo);
         return adicional;
     }
 
@@ -92,6 +103,16 @@ class AdicionalResourceIT {
             .descripcion(UPDATED_DESCRIPCION)
             .precio(UPDATED_PRECIO)
             .precioGratis(UPDATED_PRECIO_GRATIS);
+        // Add required entity
+        Dispositivo dispositivo;
+        if (TestUtil.findAll(em, Dispositivo.class).isEmpty()) {
+            dispositivo = DispositivoResourceIT.createUpdatedEntity(em);
+            em.persist(dispositivo);
+            em.flush();
+        } else {
+            dispositivo = TestUtil.findAll(em, Dispositivo.class).get(0);
+        }
+        adicional.setDispositivo(dispositivo);
         return adicional;
     }
 
@@ -181,6 +202,24 @@ class AdicionalResourceIT {
         int databaseSizeBeforeTest = adicionalRepository.findAll().size();
         // set the field null
         adicional.setPrecio(null);
+
+        // Create the Adicional, which fails.
+        AdicionalDTO adicionalDTO = adicionalMapper.toDto(adicional);
+
+        restAdicionalMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(adicionalDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Adicional> adicionalList = adicionalRepository.findAll();
+        assertThat(adicionalList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkPrecioGratisIsRequired() throws Exception {
+        int databaseSizeBeforeTest = adicionalRepository.findAll().size();
+        // set the field null
+        adicional.setPrecioGratis(null);
 
         // Create the Adicional, which fails.
         AdicionalDTO adicionalDTO = adicionalMapper.toDto(adicional);

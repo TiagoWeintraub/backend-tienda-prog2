@@ -7,7 +7,11 @@
 
   <div class="modal-body">
     <jhi-alert-error></jhi-alert-error>
-    <p id="jhi-delete-dispositivo-heading" jhiTranslate="tiendaApp.dispositivo.delete.question" [translateValues]="{ id: dispositivo.id }">
+    <p
+      id="jhi-delete-dispositivo-heading"
+      jhiTranslate="tiendaApiApp.dispositivo.delete.question"
+      [translateValues]="{ id: dispositivo.id }"
+    >
       Are you sure you want to delete Dispositivo {{ dispositivo.id }}?
     </p>
   </div>

@@ -142,21 +142,12 @@ public class DispositivoResource {
      * {@code GET  /dispositivos} : get all the dispositivos.
      *
      * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of dispositivos in body.
      */
     @GetMapping("/dispositivos")
-    public ResponseEntity<List<DispositivoDTO>> getAllDispositivos(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
-        @RequestParam(required = false, defaultValue = "false") boolean eagerload
-    ) {
+    public ResponseEntity<List<DispositivoDTO>> getAllDispositivos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Dispositivos");
-        Page<DispositivoDTO> page;
-        if (eagerload) {
-            page = dispositivoService.findAllWithEagerRelationships(pageable);
-        } else {
-            page = dispositivoService.findAll(pageable);
-        }
+        Page<DispositivoDTO> page = dispositivoService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

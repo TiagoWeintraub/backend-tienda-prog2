@@ -1,6 +1,6 @@
 {
-  "applications": ["tienda"],
-  "changelogDate": "20241029202246",
+  "applications": ["tiendaApi"],
+  "changelogDate": "20241030151837",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "opcion",
@@ -23,7 +23,8 @@
     {
       "fieldName": "precioAdicional",
       "fieldType": "BigDecimal",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
     }
   ],
   "fluentMethods": true,
@@ -34,11 +35,10 @@
   "relationships": [
     {
       "otherEntityName": "personalizacion",
-      "otherEntityRelationshipName": "opciones",
       "relationshipName": "personalizacion",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     }
   ],
-  "searchEngine": false,
   "service": "serviceClass"
 }

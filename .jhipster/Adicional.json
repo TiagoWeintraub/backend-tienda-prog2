@@ -1,6 +1,6 @@
 {
-  "applications": ["tienda"],
-  "changelogDate": "20241029201946",
+  "applications": ["tiendaApi"],
+  "changelogDate": "20241030151937",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "adicional",
@@ -18,11 +18,14 @@
     {
       "fieldName": "precio",
       "fieldType": "BigDecimal",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
     },
     {
       "fieldName": "precioGratis",
-      "fieldType": "BigDecimal"
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "-1"
     }
   ],
   "fluentMethods": true,
@@ -33,12 +36,10 @@
   "relationships": [
     {
       "otherEntityName": "dispositivo",
-      "otherEntityRelationshipName": "adicionales",
-      "ownerSide": false,
-      "relationshipName": "dispositivos",
-      "relationshipType": "many-to-many"
+      "relationshipName": "dispositivo",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     }
   ],
-  "searchEngine": false,
   "service": "serviceClass"
 }

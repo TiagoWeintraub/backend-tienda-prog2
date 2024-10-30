@@ -5,6 +5,7 @@ export const sampleWithRequiredData: IAdicional = {
   nombre: 'Nepalese Division Adaptive',
   descripcion: 'Frozen',
   precio: 62739,
+  precioGratis: 92899,
 };
 
 export const sampleWithPartialData: IAdicional = {
@@ -12,7 +13,7 @@ export const sampleWithPartialData: IAdicional = {
   nombre: 'models Realigned',
   descripcion: 'toolset',
   precio: 90033,
-  precioGratis: 7381,
+  precioGratis: 7380,
 };
 
 export const sampleWithFullData: IAdicional = {
@@ -27,6 +28,7 @@ export const sampleWithNewData: NewAdicional = {
   nombre: 'extensible San',
   descripcion: 'input',
   precio: 75989,
+  precioGratis: 34962,
   id: null,
 };
 

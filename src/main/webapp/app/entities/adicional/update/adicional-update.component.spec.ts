@@ -9,6 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { AdicionalFormService } from './adicional-form.service';
 import { AdicionalService } from '../service/adicional.service';
 import { IAdicional } from '../adicional.model';
+import { IDispositivo } from 'app/entities/dispositivo/dispositivo.model';
+import { DispositivoService } from 'app/entities/dispositivo/service/dispositivo.service';
 
 import { AdicionalUpdateComponent } from './adicional-update.component';
 
@@ -18,6 +20,7 @@ describe('Adicional Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let adicionalFormService: AdicionalFormService;
   let adicionalService: AdicionalService;
+  let dispositivoService: DispositivoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,17 +43,43 @@ describe('Adicional Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     adicionalFormService = TestBed.inject(AdicionalFormService);
     adicionalService = TestBed.inject(AdicionalService);
+    dispositivoService = TestBed.inject(DispositivoService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call Dispositivo query and add missing value', () => {
       const adicional: IAdicional = { id: 456 };
+      const dispositivo: IDispositivo = { id: 42317 };
+      adicional.dispositivo = dispositivo;
+
+      const dispositivoCollection: IDispositivo[] = [{ id: 1012 }];
+      jest.spyOn(dispositivoService, 'query').mockReturnValue(of(new HttpResponse({ body: dispositivoCollection })));
+      const additionalDispositivos = [dispositivo];
+      const expectedCollection: IDispositivo[] = [...additionalDispositivos, ...dispositivoCollection];
+      jest.spyOn(dispositivoService, 'addDispositivoToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ adicional });
       comp.ngOnInit();
 
+      expect(dispositivoService.query).toHaveBeenCalled();
+      expect(dispositivoService.addDispositivoToCollectionIfMissing).toHaveBeenCalledWith(
+        dispositivoCollection,
+        ...additionalDispositivos.map(expect.objectContaining)
+      );
+      expect(comp.dispositivosSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const adicional: IAdicional = { id: 456 };
+      const dispositivo: IDispositivo = { id: 83018 };
+      adicional.dispositivo = dispositivo;
+
+      activatedRoute.data = of({ adicional });
+      comp.ngOnInit();
+
+      expect(comp.dispositivosSharedCollection).toContain(dispositivo);
       expect(comp.adicional).toEqual(adicional);
     });
   });
@@ -120,6 +149,18 @@ describe('Adicional Management Update Component', () => {
       expect(adicionalService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Compare relationships', () => {
+    describe('compareDispositivo', () => {
+      it('Should forward to dispositivoService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(dispositivoService, 'compareDispositivo');
+        comp.compareDispositivo(entity, entity2);
+        expect(dispositivoService.compareDispositivo).toHaveBeenCalledWith(entity, entity2);
+      });
     });
   });
 });

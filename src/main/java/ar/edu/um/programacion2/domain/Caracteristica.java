@@ -1,6 +1,5 @@
 package ar.edu.um.programacion2.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -31,8 +30,8 @@ public class Caracteristica implements Serializable {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "caracteristicas", "personalizaciones", "adicionales", "venta" }, allowSetters = true)
+    @ManyToOne(optional = false)
+    @NotNull
     private Dispositivo dispositivo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

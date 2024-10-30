@@ -33,6 +33,7 @@ type VentaFormGroupContent = {
   id: FormControl<VentaFormRawValue['id'] | NewVenta['id']>;
   fechaVenta: FormControl<VentaFormRawValue['fechaVenta']>;
   precioFinal: FormControl<VentaFormRawValue['precioFinal']>;
+  dispositivo: FormControl<VentaFormRawValue['dispositivo']>;
 };
 
 export type VentaFormGroup = FormGroup<VentaFormGroupContent>;
@@ -58,6 +59,7 @@ export class VentaFormService {
       precioFinal: new FormControl(ventaRawValue.precioFinal, {
         validators: [Validators.required],
       }),
+      dispositivo: new FormControl(ventaRawValue.dispositivo),
     });
   }
 

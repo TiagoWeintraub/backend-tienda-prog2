@@ -14,7 +14,7 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type AdicionalFormGroupInput = IAdicional | PartialWithRequiredKeyOf<NewAdicional>;
 
-type AdicionalFormDefaults = Pick<NewAdicional, 'id' | 'dispositivos'>;
+type AdicionalFormDefaults = Pick<NewAdicional, 'id'>;
 
 type AdicionalFormGroupContent = {
   id: FormControl<IAdicional['id'] | NewAdicional['id']>;
@@ -22,7 +22,7 @@ type AdicionalFormGroupContent = {
   descripcion: FormControl<IAdicional['descripcion']>;
   precio: FormControl<IAdicional['precio']>;
   precioGratis: FormControl<IAdicional['precioGratis']>;
-  dispositivos: FormControl<IAdicional['dispositivos']>;
+  dispositivo: FormControl<IAdicional['dispositivo']>;
 };
 
 export type AdicionalFormGroup = FormGroup<AdicionalFormGroupContent>;
@@ -49,10 +49,14 @@ export class AdicionalFormService {
         validators: [Validators.required],
       }),
       precio: new FormControl(adicionalRawValue.precio, {
+        validators: [Validators.required, Validators.min(0)],
+      }),
+      precioGratis: new FormControl(adicionalRawValue.precioGratis, {
+        validators: [Validators.required, Validators.min(-1)],
+      }),
+      dispositivo: new FormControl(adicionalRawValue.dispositivo, {
         validators: [Validators.required],
       }),
-      precioGratis: new FormControl(adicionalRawValue.precioGratis),
-      dispositivos: new FormControl(adicionalRawValue.dispositivos ?? []),
     });
   }
 
@@ -73,7 +77,6 @@ export class AdicionalFormService {
   private getFormDefaults(): AdicionalFormDefaults {
     return {
       id: null,
-      dispositivos: [],
     };
   }
 }

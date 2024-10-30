@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="PersonalizacionHeading">
-    <span jhiTranslate="tiendaApp.personalizacion.home.title">Personalizacions</span>
+    <span jhiTranslate="tiendaApiApp.personalizacion.home.title">Personalizacions</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="tiendaApp.personalizacion.home.refreshListLabel">Refresh list</span>
+        <span jhiTranslate="tiendaApiApp.personalizacion.home.refreshListLabel">Refresh list</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/personalizacion/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="tiendaApp.personalizacion.home.createLabel"> Create a new Personalizacion </span>
+        <span jhiTranslate="tiendaApiApp.personalizacion.home.createLabel"> Create a new Personalizacion </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="personalizacions?.length === 0">
-    <span jhiTranslate="tiendaApp.personalizacion.home.notFound">No Personalizacions found</span>
+    <span jhiTranslate="tiendaApiApp.personalizacion.home.notFound">No Personalizacions found</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="personalizacions && personalizacions.length > 0">
@@ -40,19 +40,19 @@
           </th>
           <th scope="col" jhiSortBy="nombre">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.personalizacion.nombre">Nombre</span>
+              <span jhiTranslate="tiendaApiApp.personalizacion.nombre">Nombre</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="descripcion">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.personalizacion.descripcion">Descripcion</span>
+              <span jhiTranslate="tiendaApiApp.personalizacion.descripcion">Descripcion</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="dispositivo.id">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.personalizacion.dispositivo">Dispositivo</span>
+              <span jhiTranslate="tiendaApiApp.personalizacion.dispositivo">Dispositivo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>

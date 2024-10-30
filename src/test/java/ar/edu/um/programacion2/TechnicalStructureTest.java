@@ -9,7 +9,7 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 
-@AnalyzeClasses(packagesOf = TiendaApp.class, importOptions = DoNotIncludeTests.class)
+@AnalyzeClasses(packagesOf = TiendaApiApp.class, importOptions = DoNotIncludeTests.class)
 class TechnicalStructureTest {
 
     // prettier-ignore
@@ -29,7 +29,7 @@ class TechnicalStructureTest {
         .whereLayer("Persistence").mayOnlyBeAccessedByLayers("Service", "Security", "Web", "Config")
         .whereLayer("Domain").mayOnlyBeAccessedByLayers("Persistence", "Service", "Security", "Web", "Config")
 
-        .ignoreDependency(belongToAnyOf(TiendaApp.class), alwaysTrue())
+        .ignoreDependency(belongToAnyOf(TiendaApiApp.class), alwaysTrue())
         .ignoreDependency(alwaysTrue(), belongToAnyOf(
             ar.edu.um.programacion2.config.Constants.class,
             ar.edu.um.programacion2.config.ApplicationProperties.class

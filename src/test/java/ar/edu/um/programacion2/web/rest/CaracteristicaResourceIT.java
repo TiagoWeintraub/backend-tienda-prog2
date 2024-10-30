@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import ar.edu.um.programacion2.IntegrationTest;
 import ar.edu.um.programacion2.domain.Caracteristica;
+import ar.edu.um.programacion2.domain.Dispositivo;
 import ar.edu.um.programacion2.repository.CaracteristicaRepository;
 import ar.edu.um.programacion2.service.dto.CaracteristicaDTO;
 import ar.edu.um.programacion2.service.mapper.CaracteristicaMapper;
@@ -65,6 +66,16 @@ class CaracteristicaResourceIT {
      */
     public static Caracteristica createEntity(EntityManager em) {
         Caracteristica caracteristica = new Caracteristica().nombre(DEFAULT_NOMBRE).descripcion(DEFAULT_DESCRIPCION);
+        // Add required entity
+        Dispositivo dispositivo;
+        if (TestUtil.findAll(em, Dispositivo.class).isEmpty()) {
+            dispositivo = DispositivoResourceIT.createEntity(em);
+            em.persist(dispositivo);
+            em.flush();
+        } else {
+            dispositivo = TestUtil.findAll(em, Dispositivo.class).get(0);
+        }
+        caracteristica.setDispositivo(dispositivo);
         return caracteristica;
     }
 
@@ -76,6 +87,16 @@ class CaracteristicaResourceIT {
      */
     public static Caracteristica createUpdatedEntity(EntityManager em) {
         Caracteristica caracteristica = new Caracteristica().nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION);
+        // Add required entity
+        Dispositivo dispositivo;
+        if (TestUtil.findAll(em, Dispositivo.class).isEmpty()) {
+            dispositivo = DispositivoResourceIT.createUpdatedEntity(em);
+            em.persist(dispositivo);
+            em.flush();
+        } else {
+            dispositivo = TestUtil.findAll(em, Dispositivo.class).get(0);
+        }
+        caracteristica.setDispositivo(dispositivo);
         return caracteristica;
     }
 

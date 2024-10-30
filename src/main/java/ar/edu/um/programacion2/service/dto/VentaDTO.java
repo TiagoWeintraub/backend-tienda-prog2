@@ -20,6 +20,8 @@ public class VentaDTO implements Serializable {
     @NotNull
     private BigDecimal precioFinal;
 
+    private DispositivoDTO dispositivo;
+
     public Long getId() {
         return id;
     }
@@ -42,6 +44,14 @@ public class VentaDTO implements Serializable {
 
     public void setPrecioFinal(BigDecimal precioFinal) {
         this.precioFinal = precioFinal;
+    }
+
+    public DispositivoDTO getDispositivo() {
+        return dispositivo;
+    }
+
+    public void setDispositivo(DispositivoDTO dispositivo) {
+        this.dispositivo = dispositivo;
     }
 
     @Override
@@ -72,6 +82,7 @@ public class VentaDTO implements Serializable {
             "id=" + getId() +
             ", fechaVenta='" + getFechaVenta() + "'" +
             ", precioFinal=" + getPrecioFinal() +
+            ", dispositivo=" + getDispositivo() +
             "}";
     }
 }

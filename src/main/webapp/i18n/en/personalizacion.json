@@ -1,5 +1,5 @@
 {
-  "tiendaApp": {
+  "tiendaApiApp": {
     "personalizacion": {
       "home": {
         "title": "Personalizacions",
@@ -20,7 +20,6 @@
       "id": "ID",
       "nombre": "Nombre",
       "descripcion": "Descripcion",
-      "opciones": "Opciones",
       "dispositivo": "Dispositivo"
     }
   }

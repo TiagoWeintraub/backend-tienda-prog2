@@ -1,11 +1,8 @@
 package ar.edu.um.programacion2.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -35,10 +32,8 @@ public class Venta implements Serializable {
     @Column(name = "precio_final", precision = 21, scale = 2, nullable = false)
     private BigDecimal precioFinal;
 
-    @OneToMany(mappedBy = "venta")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "caracteristicas", "personalizaciones", "adicionales", "venta" }, allowSetters = true)
-    private Set<Dispositivo> dispositivos = new HashSet<>();
+    @ManyToOne
+    private Dispositivo dispositivo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -81,34 +76,16 @@ public class Venta implements Serializable {
         this.precioFinal = precioFinal;
     }
 
-    public Set<Dispositivo> getDispositivos() {
-        return this.dispositivos;
+    public Dispositivo getDispositivo() {
+        return this.dispositivo;
     }
 
-    public void setDispositivos(Set<Dispositivo> dispositivos) {
-        if (this.dispositivos != null) {
-            this.dispositivos.forEach(i -> i.setVenta(null));
-        }
-        if (dispositivos != null) {
-            dispositivos.forEach(i -> i.setVenta(this));
-        }
-        this.dispositivos = dispositivos;
+    public void setDispositivo(Dispositivo dispositivo) {
+        this.dispositivo = dispositivo;
     }
 
-    public Venta dispositivos(Set<Dispositivo> dispositivos) {
-        this.setDispositivos(dispositivos);
-        return this;
-    }
-
-    public Venta addDispositivo(Dispositivo dispositivo) {
-        this.dispositivos.add(dispositivo);
-        dispositivo.setVenta(this);
-        return this;
-    }
-
-    public Venta removeDispositivo(Dispositivo dispositivo) {
-        this.dispositivos.remove(dispositivo);
-        dispositivo.setVenta(null);
+    public Venta dispositivo(Dispositivo dispositivo) {
+        this.setDispositivo(dispositivo);
         return this;
     }
 

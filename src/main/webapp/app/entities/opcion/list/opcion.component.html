@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="OpcionHeading">
-    <span jhiTranslate="tiendaApp.opcion.home.title">Opcions</span>
+    <span jhiTranslate="tiendaApiApp.opcion.home.title">Opcions</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="tiendaApp.opcion.home.refreshListLabel">Refresh list</span>
+        <span jhiTranslate="tiendaApiApp.opcion.home.refreshListLabel">Refresh list</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/opcion/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="tiendaApp.opcion.home.createLabel"> Create a new Opcion </span>
+        <span jhiTranslate="tiendaApiApp.opcion.home.createLabel"> Create a new Opcion </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="opcions?.length === 0">
-    <span jhiTranslate="tiendaApp.opcion.home.notFound">No Opcions found</span>
+    <span jhiTranslate="tiendaApiApp.opcion.home.notFound">No Opcions found</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="opcions && opcions.length > 0">
@@ -40,31 +40,31 @@
           </th>
           <th scope="col" jhiSortBy="codigo">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.opcion.codigo">Codigo</span>
+              <span jhiTranslate="tiendaApiApp.opcion.codigo">Codigo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="nombre">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.opcion.nombre">Nombre</span>
+              <span jhiTranslate="tiendaApiApp.opcion.nombre">Nombre</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="descripcion">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.opcion.descripcion">Descripcion</span>
+              <span jhiTranslate="tiendaApiApp.opcion.descripcion">Descripcion</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="precioAdicional">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.opcion.precioAdicional">Precio Adicional</span>
+              <span jhiTranslate="tiendaApiApp.opcion.precioAdicional">Precio Adicional</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="personalizacion.id">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.opcion.personalizacion">Personalizacion</span>
+              <span jhiTranslate="tiendaApiApp.opcion.personalizacion">Personalizacion</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>

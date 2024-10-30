@@ -1,5 +1,5 @@
 {
-  "tiendaApp": {
+  "tiendaApiApp": {
     "dispositivo": {
       "home": {
         "title": "Dispositivos",
@@ -22,11 +22,7 @@
       "nombre": "Nombre",
       "descripcion": "Descripcion",
       "precioBase": "Precio Base",
-      "moneda": "Moneda",
-      "caracteristicas": "Caracteristicas",
-      "personalizaciones": "Personalizaciones",
-      "adicionales": "Adicionales",
-      "venta": "Venta"
+      "moneda": "Moneda"
     }
   }
 }

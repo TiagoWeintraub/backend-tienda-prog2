@@ -1,6 +1,6 @@
 {
-  "applications": ["tienda"],
-  "changelogDate": "20241029202346",
+  "applications": ["tiendaApi"],
+  "changelogDate": "20241030151437",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "venta",
@@ -24,11 +24,9 @@
   "relationships": [
     {
       "otherEntityName": "dispositivo",
-      "otherEntityRelationshipName": "venta",
       "relationshipName": "dispositivo",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-one"
     }
   ],
-  "searchEngine": false,
   "service": "serviceClass"
 }

@@ -1,9 +1,6 @@
 package ar.edu.um.programacion2.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -33,13 +30,8 @@ public class Personalizacion implements Serializable {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @OneToMany(mappedBy = "personalizacion")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "personalizacion" }, allowSetters = true)
-    private Set<Opcion> opciones = new HashSet<>();
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "caracteristicas", "personalizaciones", "adicionales", "venta" }, allowSetters = true)
+    @ManyToOne(optional = false)
+    @NotNull
     private Dispositivo dispositivo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -81,37 +73,6 @@ public class Personalizacion implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Set<Opcion> getOpciones() {
-        return this.opciones;
-    }
-
-    public void setOpciones(Set<Opcion> opcions) {
-        if (this.opciones != null) {
-            this.opciones.forEach(i -> i.setPersonalizacion(null));
-        }
-        if (opcions != null) {
-            opcions.forEach(i -> i.setPersonalizacion(this));
-        }
-        this.opciones = opcions;
-    }
-
-    public Personalizacion opciones(Set<Opcion> opcions) {
-        this.setOpciones(opcions);
-        return this;
-    }
-
-    public Personalizacion addOpciones(Opcion opcion) {
-        this.opciones.add(opcion);
-        opcion.setPersonalizacion(this);
-        return this;
-    }
-
-    public Personalizacion removeOpciones(Opcion opcion) {
-        this.opciones.remove(opcion);
-        opcion.setPersonalizacion(null);
-        return this;
     }
 
     public Dispositivo getDispositivo() {

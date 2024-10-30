@@ -21,18 +21,18 @@ import tech.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
-public class TiendaApp {
+public class TiendaApiApp {
 
-    private static final Logger log = LoggerFactory.getLogger(TiendaApp.class);
+    private static final Logger log = LoggerFactory.getLogger(TiendaApiApp.class);
 
     private final Environment env;
 
-    public TiendaApp(Environment env) {
+    public TiendaApiApp(Environment env) {
         this.env = env;
     }
 
     /**
-     * Initializes tienda.
+     * Initializes tiendaApi.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>
@@ -65,7 +65,7 @@ public class TiendaApp {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(TiendaApp.class);
+        SpringApplication app = new SpringApplication(TiendaApiApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);

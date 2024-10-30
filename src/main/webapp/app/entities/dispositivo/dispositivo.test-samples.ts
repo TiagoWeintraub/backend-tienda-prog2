@@ -4,35 +4,35 @@ export const sampleWithRequiredData: IDispositivo = {
   id: 71774,
   codigo: 'Licensed',
   nombre: 'hard Fresh Baby',
-  descripcion: '../fake-data/blob/hipster.txt',
-  precioBase: 9794,
-  moneda: 'green',
+  descripcion: 'teal',
+  precioBase: 11867,
+  moneda: 'Cambridgeshire Soap',
 };
 
 export const sampleWithPartialData: IDispositivo = {
-  id: 48349,
-  codigo: 'Liaison Account',
-  nombre: 'Communications haptic',
-  descripcion: '../fake-data/blob/hipster.txt',
-  precioBase: 3416,
-  moneda: '1080p',
+  id: 91774,
+  codigo: 'Communications haptic',
+  nombre: 'Self-enabling',
+  descripcion: 'harness Mouse',
+  precioBase: 18092,
+  moneda: 'Ranch Credit plum',
 };
 
 export const sampleWithFullData: IDispositivo = {
-  id: 37257,
-  codigo: 'Program Mouse',
-  nombre: 'Architect',
-  descripcion: '../fake-data/blob/hipster.txt',
-  precioBase: 26584,
-  moneda: 'Kroon Account',
+  id: 58200,
+  codigo: 'facilitate info-mediaries Accountability',
+  nombre: 'optical firewall',
+  descripcion: 'Naira Toys FTP',
+  precioBase: 66502,
+  moneda: 'Director Health',
 };
 
 export const sampleWithNewData: NewDispositivo = {
-  codigo: 'facilitate info-mediaries Accountability',
-  nombre: 'optical firewall',
-  descripcion: '../fake-data/blob/hipster.txt',
-  precioBase: 99005,
-  moneda: 'Florida York synergy',
+  codigo: 'Director reserved',
+  nombre: 'array',
+  descripcion: 'Borders solution',
+  precioBase: 72340,
+  moneda: 'North Yen',
   id: null,
 };
 

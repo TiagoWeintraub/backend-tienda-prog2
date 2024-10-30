@@ -1,5 +1,5 @@
 {
-  "tiendaApp": {
+  "tiendaApiApp": {
     "adicional": {
       "home": {
         "title": "Adicionals",
@@ -22,7 +22,7 @@
       "descripcion": "Descripcion",
       "precio": "Precio",
       "precioGratis": "Precio Gratis",
-      "dispositivos": "Dispositivos"
+      "dispositivo": "Dispositivo"
     }
   }
 }

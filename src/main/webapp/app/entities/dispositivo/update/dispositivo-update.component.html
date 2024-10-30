@@ -1,7 +1,11 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-dispositivo-heading" data-cy="DispositivoCreateUpdateHeading" jhiTranslate="tiendaApp.dispositivo.home.createOrEditLabel">
+      <h2
+        id="jhi-dispositivo-heading"
+        data-cy="DispositivoCreateUpdateHeading"
+        jhiTranslate="tiendaApiApp.dispositivo.home.createOrEditLabel"
+      >
         Create or edit a Dispositivo
       </h2>
 
@@ -14,7 +18,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.dispositivo.codigo" for="field_codigo">Codigo</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.dispositivo.codigo" for="field_codigo">Codigo</label>
           <input type="text" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
           <div *ngIf="editForm.get('codigo')!.invalid && (editForm.get('codigo')!.dirty || editForm.get('codigo')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('codigo')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -24,7 +28,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.dispositivo.nombre" for="field_nombre">Nombre</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.dispositivo.nombre" for="field_nombre">Nombre</label>
           <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
           <div *ngIf="editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('nombre')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -34,14 +38,15 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.dispositivo.descripcion" for="field_descripcion">Descripcion</label>
-          <textarea
+          <label class="form-label" jhiTranslate="tiendaApiApp.dispositivo.descripcion" for="field_descripcion">Descripcion</label>
+          <input
+            type="text"
             class="form-control"
             name="descripcion"
             id="field_descripcion"
             data-cy="descripcion"
             formControlName="descripcion"
-          ></textarea>
+          />
           <div *ngIf="editForm.get('descripcion')!.invalid && (editForm.get('descripcion')!.dirty || editForm.get('descripcion')!.touched)">
             <small
               class="form-text text-danger"
@@ -54,7 +59,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.dispositivo.precioBase" for="field_precioBase">Precio Base</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.dispositivo.precioBase" for="field_precioBase">Precio Base</label>
           <input
             type="number"
             class="form-control"
@@ -73,6 +78,14 @@
             </small>
             <small
               class="form-text text-danger"
+              *ngIf="editForm.get('precioBase')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
               [hidden]="!editForm.get('precioBase')?.errors?.number"
               jhiTranslate="entity.validation.number"
             >
@@ -82,36 +95,13 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.dispositivo.moneda" for="field_moneda">Moneda</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.dispositivo.moneda" for="field_moneda">Moneda</label>
           <input type="text" class="form-control" name="moneda" id="field_moneda" data-cy="moneda" formControlName="moneda" />
           <div *ngIf="editForm.get('moneda')!.invalid && (editForm.get('moneda')!.dirty || editForm.get('moneda')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('moneda')?.errors?.required" jhiTranslate="entity.validation.required">
               This field is required.
             </small>
           </div>
-        </div>
-
-        <div class="row mb-3">
-          <label jhiTranslate="tiendaApp.dispositivo.adicionales" for="field_adicionales">Adicionales</label>
-          <select
-            class="form-control"
-            id="field_adicionales"
-            data-cy="adicionales"
-            multiple
-            name="adicionales"
-            formControlName="adicionales"
-            [compareWith]="compareAdicional"
-          >
-            <option [ngValue]="adicionalOption" *ngFor="let adicionalOption of adicionalsSharedCollection">{{ adicionalOption.id }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.dispositivo.venta" for="field_venta">Venta</label>
-          <select class="form-control" id="field_venta" data-cy="venta" name="venta" formControlName="venta" [compareWith]="compareVenta">
-            <option [ngValue]="null"></option>
-            <option [ngValue]="ventaOption" *ngFor="let ventaOption of ventasSharedCollection">{{ ventaOption.id }}</option>
-          </select>
         </div>
       </div>
 

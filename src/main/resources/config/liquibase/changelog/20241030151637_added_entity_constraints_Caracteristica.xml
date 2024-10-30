@@ -6,7 +6,7 @@
     <!--
         Added the constraints for entity Caracteristica.
     -->
-    <changeSet id="20241029201846-2" author="jhipster">
+    <changeSet id="20241030151637-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="dispositivo_id"
                                  baseTableName="caracteristica"

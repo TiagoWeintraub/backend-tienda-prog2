@@ -46,7 +46,9 @@ export class PersonalizacionFormService {
       descripcion: new FormControl(personalizacionRawValue.descripcion, {
         validators: [Validators.required],
       }),
-      dispositivo: new FormControl(personalizacionRawValue.dispositivo),
+      dispositivo: new FormControl(personalizacionRawValue.dispositivo, {
+        validators: [Validators.required],
+      }),
     });
   }
 

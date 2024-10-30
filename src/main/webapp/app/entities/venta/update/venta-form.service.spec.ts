@@ -22,6 +22,7 @@ describe('Venta Form Service', () => {
             id: expect.any(Object),
             fechaVenta: expect.any(Object),
             precioFinal: expect.any(Object),
+            dispositivo: expect.any(Object),
           })
         );
       });
@@ -34,6 +35,7 @@ describe('Venta Form Service', () => {
             id: expect.any(Object),
             fechaVenta: expect.any(Object),
             precioFinal: expect.any(Object),
+            dispositivo: expect.any(Object),
           })
         );
       });

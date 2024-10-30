@@ -4,7 +4,7 @@
       <h2
         id="jhi-personalizacion-heading"
         data-cy="PersonalizacionCreateUpdateHeading"
-        jhiTranslate="tiendaApp.personalizacion.home.createOrEditLabel"
+        jhiTranslate="tiendaApiApp.personalizacion.home.createOrEditLabel"
       >
         Create or edit a Personalizacion
       </h2>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.personalizacion.nombre" for="field_nombre">Nombre</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.personalizacion.nombre" for="field_nombre">Nombre</label>
           <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
           <div *ngIf="editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('nombre')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.personalizacion.descripcion" for="field_descripcion">Descripcion</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.personalizacion.descripcion" for="field_descripcion">Descripcion</label>
           <input
             type="text"
             class="form-control"
@@ -49,7 +49,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.personalizacion.dispositivo" for="field_dispositivo">Dispositivo</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.personalizacion.dispositivo" for="field_dispositivo">Dispositivo</label>
           <select
             class="form-control"
             id="field_dispositivo"
@@ -58,11 +58,22 @@
             formControlName="dispositivo"
             [compareWith]="compareDispositivo"
           >
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('dispositivo')!.value" [ngValue]="null" selected></option>
             <option [ngValue]="dispositivoOption" *ngFor="let dispositivoOption of dispositivosSharedCollection">
               {{ dispositivoOption.id }}
             </option>
           </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['dispositivo'])!.invalid && (editForm.get(['dispositivo'])!.dirty || editForm.get(['dispositivo'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['dispositivo'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
         </div>
       </div>
 

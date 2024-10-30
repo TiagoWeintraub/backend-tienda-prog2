@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="opcion">
-      <h2 data-cy="opcionDetailsHeading"><span jhiTranslate="tiendaApp.opcion.detail.title">Opcion</span></h2>
+      <h2 data-cy="opcionDetailsHeading"><span jhiTranslate="tiendaApiApp.opcion.detail.title">Opcion</span></h2>
 
       <hr />
 
@@ -14,23 +14,23 @@
         <dd>
           <span>{{ opcion.id }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.opcion.codigo">Codigo</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.opcion.codigo">Codigo</span></dt>
         <dd>
           <span>{{ opcion.codigo }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.opcion.nombre">Nombre</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.opcion.nombre">Nombre</span></dt>
         <dd>
           <span>{{ opcion.nombre }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.opcion.descripcion">Descripcion</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.opcion.descripcion">Descripcion</span></dt>
         <dd>
           <span>{{ opcion.descripcion }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.opcion.precioAdicional">Precio Adicional</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.opcion.precioAdicional">Precio Adicional</span></dt>
         <dd>
           <span>{{ opcion.precioAdicional }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.opcion.personalizacion">Personalizacion</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.opcion.personalizacion">Personalizacion</span></dt>
         <dd>
           <div *ngIf="opcion.personalizacion">
             <a [routerLink]="['/personalizacion', opcion.personalizacion.id, 'view']">{{ opcion.personalizacion.id }}</a>

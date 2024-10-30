@@ -37,11 +37,13 @@ public class Opcion implements Serializable {
     private String descripcion;
 
     @NotNull
+    @DecimalMin(value = "0")
     @Column(name = "precio_adicional", precision = 21, scale = 2, nullable = false)
     private BigDecimal precioAdicional;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "opciones", "dispositivo" }, allowSetters = true)
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = { "dispositivo" }, allowSetters = true)
     private Personalizacion personalizacion;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

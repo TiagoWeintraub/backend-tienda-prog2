@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="AdicionalHeading">
-    <span jhiTranslate="tiendaApp.adicional.home.title">Adicionals</span>
+    <span jhiTranslate="tiendaApiApp.adicional.home.title">Adicionals</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="tiendaApp.adicional.home.refreshListLabel">Refresh list</span>
+        <span jhiTranslate="tiendaApiApp.adicional.home.refreshListLabel">Refresh list</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/adicional/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="tiendaApp.adicional.home.createLabel"> Create a new Adicional </span>
+        <span jhiTranslate="tiendaApiApp.adicional.home.createLabel"> Create a new Adicional </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="adicionals?.length === 0">
-    <span jhiTranslate="tiendaApp.adicional.home.notFound">No Adicionals found</span>
+    <span jhiTranslate="tiendaApiApp.adicional.home.notFound">No Adicionals found</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="adicionals && adicionals.length > 0">
@@ -40,25 +40,31 @@
           </th>
           <th scope="col" jhiSortBy="nombre">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.adicional.nombre">Nombre</span>
+              <span jhiTranslate="tiendaApiApp.adicional.nombre">Nombre</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="descripcion">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.adicional.descripcion">Descripcion</span>
+              <span jhiTranslate="tiendaApiApp.adicional.descripcion">Descripcion</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="precio">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.adicional.precio">Precio</span>
+              <span jhiTranslate="tiendaApiApp.adicional.precio">Precio</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="precioGratis">
             <div class="d-flex">
-              <span jhiTranslate="tiendaApp.adicional.precioGratis">Precio Gratis</span>
+              <span jhiTranslate="tiendaApiApp.adicional.precioGratis">Precio Gratis</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dispositivo.id">
+            <div class="d-flex">
+              <span jhiTranslate="tiendaApiApp.adicional.dispositivo">Dispositivo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -79,6 +85,11 @@
           <td>{{ adicional.descripcion }}</td>
           <td>{{ adicional.precio }}</td>
           <td>{{ adicional.precioGratis }}</td>
+          <td>
+            <div *ngIf="adicional.dispositivo">
+              <a [routerLink]="['/dispositivo', adicional.dispositivo.id, 'view']">{{ adicional.dispositivo.id }}</a>
+            </div>
+          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

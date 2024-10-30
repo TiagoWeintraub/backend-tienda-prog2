@@ -46,7 +46,9 @@ export class CaracteristicaFormService {
       descripcion: new FormControl(caracteristicaRawValue.descripcion, {
         validators: [Validators.required],
       }),
-      dispositivo: new FormControl(caracteristicaRawValue.dispositivo),
+      dispositivo: new FormControl(caracteristicaRawValue.dispositivo, {
+        validators: [Validators.required],
+      }),
     });
   }
 

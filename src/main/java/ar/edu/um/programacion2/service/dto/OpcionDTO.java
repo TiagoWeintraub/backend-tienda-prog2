@@ -23,6 +23,7 @@ public class OpcionDTO implements Serializable {
     private String descripcion;
 
     @NotNull
+    @DecimalMin(value = "0")
     private BigDecimal precioAdicional;
 
     private PersonalizacionDTO personalizacion;

@@ -24,7 +24,7 @@ describe('Adicional Form Service', () => {
             descripcion: expect.any(Object),
             precio: expect.any(Object),
             precioGratis: expect.any(Object),
-            dispositivos: expect.any(Object),
+            dispositivo: expect.any(Object),
           })
         );
       });
@@ -39,7 +39,7 @@ describe('Adicional Form Service', () => {
             descripcion: expect.any(Object),
             precio: expect.any(Object),
             precioGratis: expect.any(Object),
-            dispositivos: expect.any(Object),
+            dispositivo: expect.any(Object),
           })
         );
       });

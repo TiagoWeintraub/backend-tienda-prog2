@@ -89,15 +89,6 @@ public class DispositivoService {
     }
 
     /**
-     * Get all the dispositivos with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
-    public Page<DispositivoDTO> findAllWithEagerRelationships(Pageable pageable) {
-        return dispositivoRepository.findAllWithEagerRelationships(pageable).map(dispositivoMapper::toDto);
-    }
-
-    /**
      * Get one dispositivo by id.
      *
      * @param id the id of the entity.
@@ -106,7 +97,7 @@ public class DispositivoService {
     @Transactional(readOnly = true)
     public Optional<DispositivoDTO> findOne(Long id) {
         log.debug("Request to get Dispositivo : {}", id);
-        return dispositivoRepository.findOneWithEagerRelationships(id).map(dispositivoMapper::toDto);
+        return dispositivoRepository.findById(id).map(dispositivoMapper::toDto);
     }
 
     /**

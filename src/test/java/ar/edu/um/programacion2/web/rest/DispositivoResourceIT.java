@@ -3,43 +3,32 @@ package ar.edu.um.programacion2.web.rest;
 import static ar.edu.um.programacion2.web.rest.TestUtil.sameNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import ar.edu.um.programacion2.IntegrationTest;
 import ar.edu.um.programacion2.domain.Dispositivo;
 import ar.edu.um.programacion2.repository.DispositivoRepository;
-import ar.edu.um.programacion2.service.DispositivoService;
 import ar.edu.um.programacion2.service.dto.DispositivoDTO;
 import ar.edu.um.programacion2.service.mapper.DispositivoMapper;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link DispositivoResource} REST controller.
  */
 @IntegrationTest
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class DispositivoResourceIT {
@@ -53,8 +42,8 @@ class DispositivoResourceIT {
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
-    private static final BigDecimal DEFAULT_PRECIO_BASE = new BigDecimal(1);
-    private static final BigDecimal UPDATED_PRECIO_BASE = new BigDecimal(2);
+    private static final BigDecimal DEFAULT_PRECIO_BASE = new BigDecimal(0);
+    private static final BigDecimal UPDATED_PRECIO_BASE = new BigDecimal(1);
 
     private static final String DEFAULT_MONEDA = "AAAAAAAAAA";
     private static final String UPDATED_MONEDA = "BBBBBBBBBB";
@@ -68,14 +57,8 @@ class DispositivoResourceIT {
     @Autowired
     private DispositivoRepository dispositivoRepository;
 
-    @Mock
-    private DispositivoRepository dispositivoRepositoryMock;
-
     @Autowired
     private DispositivoMapper dispositivoMapper;
-
-    @Mock
-    private DispositivoService dispositivoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -208,6 +191,26 @@ class DispositivoResourceIT {
 
     @Test
     @Transactional
+    void checkDescripcionIsRequired() throws Exception {
+        int databaseSizeBeforeTest = dispositivoRepository.findAll().size();
+        // set the field null
+        dispositivo.setDescripcion(null);
+
+        // Create the Dispositivo, which fails.
+        DispositivoDTO dispositivoDTO = dispositivoMapper.toDto(dispositivo);
+
+        restDispositivoMockMvc
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(dispositivoDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Dispositivo> dispositivoList = dispositivoRepository.findAll();
+        assertThat(dispositivoList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void checkPrecioBaseIsRequired() throws Exception {
         int databaseSizeBeforeTest = dispositivoRepository.findAll().size();
         // set the field null
@@ -260,26 +263,9 @@ class DispositivoResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(dispositivo.getId().intValue())))
             .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
             .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE)))
-            .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
+            .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION)))
             .andExpect(jsonPath("$.[*].precioBase").value(hasItem(sameNumber(DEFAULT_PRECIO_BASE))))
             .andExpect(jsonPath("$.[*].moneda").value(hasItem(DEFAULT_MONEDA)));
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllDispositivosWithEagerRelationshipsIsEnabled() throws Exception {
-        when(dispositivoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restDispositivoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(dispositivoServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllDispositivosWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(dispositivoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restDispositivoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
-        verify(dispositivoRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test
@@ -296,7 +282,7 @@ class DispositivoResourceIT {
             .andExpect(jsonPath("$.id").value(dispositivo.getId().intValue()))
             .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
             .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE))
-            .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION.toString()))
+            .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION))
             .andExpect(jsonPath("$.precioBase").value(sameNumber(DEFAULT_PRECIO_BASE)))
             .andExpect(jsonPath("$.moneda").value(DEFAULT_MONEDA));
     }

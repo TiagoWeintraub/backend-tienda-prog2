@@ -1,6 +1,6 @@
 {
-  "applications": ["tienda"],
-  "changelogDate": "20241029202146",
+  "applications": ["tiendaApi"],
+  "changelogDate": "20241030151737",
   "dto": "mapstruct",
   "embedded": false,
   "entityTableName": "personalizacion",
@@ -23,18 +23,11 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "opcion",
-      "otherEntityRelationshipName": "personalizacion",
-      "relationshipName": "opciones",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityName": "dispositivo",
-      "otherEntityRelationshipName": "personalizaciones",
       "relationshipName": "dispositivo",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     }
   ],
-  "searchEngine": false,
   "service": "serviceClass"
 }

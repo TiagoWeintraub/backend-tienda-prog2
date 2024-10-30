@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import ar.edu.um.programacion2.IntegrationTest;
 import ar.edu.um.programacion2.domain.Opcion;
+import ar.edu.um.programacion2.domain.Personalizacion;
 import ar.edu.um.programacion2.repository.OpcionRepository;
 import ar.edu.um.programacion2.service.dto.OpcionDTO;
 import ar.edu.um.programacion2.service.mapper.OpcionMapper;
@@ -42,8 +43,8 @@ class OpcionResourceIT {
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
-    private static final BigDecimal DEFAULT_PRECIO_ADICIONAL = new BigDecimal(1);
-    private static final BigDecimal UPDATED_PRECIO_ADICIONAL = new BigDecimal(2);
+    private static final BigDecimal DEFAULT_PRECIO_ADICIONAL = new BigDecimal(0);
+    private static final BigDecimal UPDATED_PRECIO_ADICIONAL = new BigDecimal(1);
 
     private static final String ENTITY_API_URL = "/api/opcions";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -77,6 +78,16 @@ class OpcionResourceIT {
             .nombre(DEFAULT_NOMBRE)
             .descripcion(DEFAULT_DESCRIPCION)
             .precioAdicional(DEFAULT_PRECIO_ADICIONAL);
+        // Add required entity
+        Personalizacion personalizacion;
+        if (TestUtil.findAll(em, Personalizacion.class).isEmpty()) {
+            personalizacion = PersonalizacionResourceIT.createEntity(em);
+            em.persist(personalizacion);
+            em.flush();
+        } else {
+            personalizacion = TestUtil.findAll(em, Personalizacion.class).get(0);
+        }
+        opcion.setPersonalizacion(personalizacion);
         return opcion;
     }
 
@@ -92,6 +103,16 @@ class OpcionResourceIT {
             .nombre(UPDATED_NOMBRE)
             .descripcion(UPDATED_DESCRIPCION)
             .precioAdicional(UPDATED_PRECIO_ADICIONAL);
+        // Add required entity
+        Personalizacion personalizacion;
+        if (TestUtil.findAll(em, Personalizacion.class).isEmpty()) {
+            personalizacion = PersonalizacionResourceIT.createUpdatedEntity(em);
+            em.persist(personalizacion);
+            em.flush();
+        } else {
+            personalizacion = TestUtil.findAll(em, Personalizacion.class).get(0);
+        }
+        opcion.setPersonalizacion(personalizacion);
         return opcion;
     }
 

@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-venta-heading" data-cy="VentaCreateUpdateHeading" jhiTranslate="tiendaApp.venta.home.createOrEditLabel">
+      <h2 id="jhi-venta-heading" data-cy="VentaCreateUpdateHeading" jhiTranslate="tiendaApiApp.venta.home.createOrEditLabel">
         Create or edit a Venta
       </h2>
 
@@ -14,7 +14,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.venta.fechaVenta" for="field_fechaVenta">Fecha Venta</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.venta.fechaVenta" for="field_fechaVenta">Fecha Venta</label>
           <div class="d-flex">
             <input
               id="field_fechaVenta"
@@ -45,7 +45,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="tiendaApp.venta.precioFinal" for="field_precioFinal">Precio Final</label>
+          <label class="form-label" jhiTranslate="tiendaApiApp.venta.precioFinal" for="field_precioFinal">Precio Final</label>
           <input
             type="number"
             class="form-control"
@@ -70,6 +70,23 @@
               This field should be a number.
             </small>
           </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="tiendaApiApp.venta.dispositivo" for="field_dispositivo">Dispositivo</label>
+          <select
+            class="form-control"
+            id="field_dispositivo"
+            data-cy="dispositivo"
+            name="dispositivo"
+            formControlName="dispositivo"
+            [compareWith]="compareDispositivo"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="dispositivoOption" *ngFor="let dispositivoOption of dispositivosSharedCollection">
+              {{ dispositivoOption.id }}
+            </option>
+          </select>
         </div>
       </div>
 

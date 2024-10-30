@@ -1,18 +1,18 @@
 export const EntityNavbarItems = [
   {
-    name: 'Caracteristica',
-    route: 'caracteristica',
-    translationKey: 'global.menu.entities.caracteristica',
-  },
-  {
-    name: 'Adicional',
-    route: 'adicional',
-    translationKey: 'global.menu.entities.adicional',
+    name: 'Venta',
+    route: 'venta',
+    translationKey: 'global.menu.entities.venta',
   },
   {
     name: 'Dispositivo',
     route: 'dispositivo',
     translationKey: 'global.menu.entities.dispositivo',
+  },
+  {
+    name: 'Caracteristica',
+    route: 'caracteristica',
+    translationKey: 'global.menu.entities.caracteristica',
   },
   {
     name: 'Personalizacion',
@@ -25,8 +25,8 @@ export const EntityNavbarItems = [
     translationKey: 'global.menu.entities.opcion',
   },
   {
-    name: 'Venta',
-    route: 'venta',
-    translationKey: 'global.menu.entities.venta',
+    name: 'Adicional',
+    route: 'adicional',
+    translationKey: 'global.menu.entities.adicional',
   },
 ];

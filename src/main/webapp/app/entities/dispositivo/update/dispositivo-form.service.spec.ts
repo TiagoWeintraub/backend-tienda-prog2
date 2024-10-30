@@ -25,8 +25,6 @@ describe('Dispositivo Form Service', () => {
             descripcion: expect.any(Object),
             precioBase: expect.any(Object),
             moneda: expect.any(Object),
-            adicionales: expect.any(Object),
-            venta: expect.any(Object),
           })
         );
       });
@@ -42,8 +40,6 @@ describe('Dispositivo Form Service', () => {
             descripcion: expect.any(Object),
             precioBase: expect.any(Object),
             moneda: expect.any(Object),
-            adicionales: expect.any(Object),
-            venta: expect.any(Object),
           })
         );
       });

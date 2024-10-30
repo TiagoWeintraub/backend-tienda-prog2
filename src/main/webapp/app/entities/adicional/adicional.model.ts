@@ -6,7 +6,7 @@ export interface IAdicional {
   descripcion?: string | null;
   precio?: number | null;
   precioGratis?: number | null;
-  dispositivos?: Pick<IDispositivo, 'id'>[] | null;
+  dispositivo?: Pick<IDispositivo, 'id'> | null;
 }
 
 export type NewAdicional = Omit<IAdicional, 'id'> & { id: null };

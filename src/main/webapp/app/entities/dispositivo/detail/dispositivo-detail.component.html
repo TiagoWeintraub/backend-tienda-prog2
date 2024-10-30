@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="dispositivo">
-      <h2 data-cy="dispositivoDetailsHeading"><span jhiTranslate="tiendaApp.dispositivo.detail.title">Dispositivo</span></h2>
+      <h2 data-cy="dispositivoDetailsHeading"><span jhiTranslate="tiendaApiApp.dispositivo.detail.title">Dispositivo</span></h2>
 
       <hr />
 
@@ -14,38 +14,25 @@
         <dd>
           <span>{{ dispositivo.id }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.dispositivo.codigo">Codigo</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.dispositivo.codigo">Codigo</span></dt>
         <dd>
           <span>{{ dispositivo.codigo }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.dispositivo.nombre">Nombre</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.dispositivo.nombre">Nombre</span></dt>
         <dd>
           <span>{{ dispositivo.nombre }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.dispositivo.descripcion">Descripcion</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.dispositivo.descripcion">Descripcion</span></dt>
         <dd>
           <span>{{ dispositivo.descripcion }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.dispositivo.precioBase">Precio Base</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.dispositivo.precioBase">Precio Base</span></dt>
         <dd>
           <span>{{ dispositivo.precioBase }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.dispositivo.moneda">Moneda</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.dispositivo.moneda">Moneda</span></dt>
         <dd>
           <span>{{ dispositivo.moneda }}</span>
-        </dd>
-        <dt><span jhiTranslate="tiendaApp.dispositivo.adicionales">Adicionales</span></dt>
-        <dd>
-          <span *ngFor="let adicionales of dispositivo.adicionales; let last = last">
-            <a [routerLink]="['/adicional', adicionales.id, 'view']">{{ adicionales.id }}</a
-            >{{ last ? '' : ', ' }}
-          </span>
-        </dd>
-        <dt><span jhiTranslate="tiendaApp.dispositivo.venta">Venta</span></dt>
-        <dd>
-          <div *ngIf="dispositivo.venta">
-            <a [routerLink]="['/venta', dispositivo.venta.id, 'view']">{{ dispositivo.venta.id }}</a>
-          </div>
         </dd>
       </dl>
 

@@ -2,10 +2,7 @@ package ar.edu.um.programacion2.service.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-import javax.persistence.Lob;
 import javax.validation.constraints.*;
 
 /**
@@ -22,18 +19,15 @@ public class DispositivoDTO implements Serializable {
     @NotNull
     private String nombre;
 
-    @Lob
+    @NotNull
     private String descripcion;
 
     @NotNull
+    @DecimalMin(value = "0")
     private BigDecimal precioBase;
 
     @NotNull
     private String moneda;
-
-    private Set<AdicionalDTO> adicionales = new HashSet<>();
-
-    private VentaDTO venta;
 
     public Long getId() {
         return id;
@@ -83,22 +77,6 @@ public class DispositivoDTO implements Serializable {
         this.moneda = moneda;
     }
 
-    public Set<AdicionalDTO> getAdicionales() {
-        return adicionales;
-    }
-
-    public void setAdicionales(Set<AdicionalDTO> adicionales) {
-        this.adicionales = adicionales;
-    }
-
-    public VentaDTO getVenta() {
-        return venta;
-    }
-
-    public void setVenta(VentaDTO venta) {
-        this.venta = venta;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -130,8 +108,6 @@ public class DispositivoDTO implements Serializable {
             ", descripcion='" + getDescripcion() + "'" +
             ", precioBase=" + getPrecioBase() +
             ", moneda='" + getMoneda() + "'" +
-            ", adicionales=" + getAdicionales() +
-            ", venta=" + getVenta() +
             "}";
     }
 }

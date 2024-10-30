@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="personalizacion">
-      <h2 data-cy="personalizacionDetailsHeading"><span jhiTranslate="tiendaApp.personalizacion.detail.title">Personalizacion</span></h2>
+      <h2 data-cy="personalizacionDetailsHeading"><span jhiTranslate="tiendaApiApp.personalizacion.detail.title">Personalizacion</span></h2>
 
       <hr />
 
@@ -14,15 +14,15 @@
         <dd>
           <span>{{ personalizacion.id }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.personalizacion.nombre">Nombre</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.personalizacion.nombre">Nombre</span></dt>
         <dd>
           <span>{{ personalizacion.nombre }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.personalizacion.descripcion">Descripcion</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.personalizacion.descripcion">Descripcion</span></dt>
         <dd>
           <span>{{ personalizacion.descripcion }}</span>
         </dd>
-        <dt><span jhiTranslate="tiendaApp.personalizacion.dispositivo">Dispositivo</span></dt>
+        <dt><span jhiTranslate="tiendaApiApp.personalizacion.dispositivo">Dispositivo</span></dt>
         <dd>
           <div *ngIf="personalizacion.dispositivo">
             <a [routerLink]="['/dispositivo', personalizacion.dispositivo.id, 'view']">{{ personalizacion.dispositivo.id }}</a>
